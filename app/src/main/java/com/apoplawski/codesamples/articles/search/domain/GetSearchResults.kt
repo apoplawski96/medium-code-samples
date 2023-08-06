@@ -1,7 +1,7 @@
-package com.apoplawski.codesamples.screens.search.domain
+package com.apoplawski.codesamples.articles.search.domain
 
-import com.apoplawski.codesamples.screens.search.data.FakeSearchAPI
-import com.apoplawski.codesamples.screens.search.model.SearchResult
+import com.apoplawski.codesamples.articles.search.data.FakeSearchAPI
+import com.apoplawski.codesamples.articles.search.domain.model.SearchResult
 import java.io.IOException
 
 class GetSearchResults(private val searchAPI: FakeSearchAPI) {

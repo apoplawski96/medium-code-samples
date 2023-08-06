@@ -1,9 +1,9 @@
-package com.apoplawski.codesamples.screens.search
+package com.apoplawski.codesamples.articles.search.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apoplawski.codesamples.screens.search.domain.GetSearchResults
-import com.apoplawski.codesamples.screens.search.model.SearchResult
+import com.apoplawski.codesamples.articles.search.domain.GetSearchResults
+import com.apoplawski.codesamples.articles.search.domain.model.SearchResult
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

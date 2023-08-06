@@ -3,7 +3,7 @@ package com.apoplawski.codesamples
 import android.app.Application
 import com.apoplawski.codesamples.di.appModule
 import com.apoplawski.codesamples.di.searchModule
-import com.apoplawski.codesamples.permissions.CurrentActivityProvider
+import com.apoplawski.codesamples.articles.permissions.CurrentActivityProvider
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 

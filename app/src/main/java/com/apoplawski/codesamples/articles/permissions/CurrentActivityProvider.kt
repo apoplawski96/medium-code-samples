@@ -1,4 +1,4 @@
-package com.apoplawski.codesamples.permissions
+package com.apoplawski.codesamples.articles.permissions
 
 import android.app.Activity
 import android.app.Application

@@ -4,10 +4,10 @@ import android.app.Application
 import android.content.Context
 import com.apoplawski.codesamples.navigation.KTINavigator
 import com.apoplawski.codesamples.navigation.Navigator
-import com.apoplawski.codesamples.permissions.PermissionRequester
-import com.apoplawski.codesamples.screens.search.NewSearchViewModel
-import com.apoplawski.codesamples.screens.search.data.FakeSearchAPI
-import com.apoplawski.codesamples.screens.search.domain.GetSearchResults
+import com.apoplawski.codesamples.articles.permissions.PermissionRequester
+import com.apoplawski.codesamples.articles.search.presentation.NewSearchViewModel
+import com.apoplawski.codesamples.articles.search.data.FakeSearchAPI
+import com.apoplawski.codesamples.articles.search.domain.GetSearchResults
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

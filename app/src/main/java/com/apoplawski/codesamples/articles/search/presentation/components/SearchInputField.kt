@@ -1,4 +1,4 @@
-package com.apoplawski.codesamples.screens.search.components
+package com.apoplawski.codesamples.articles.search.presentation.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
@@ -31,8 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.*
 import com.apoplawski.codesamples.R
-import com.apoplawski.codesamples.screens.search.NewSearchViewModel
-import com.apoplawski.codesamples.screens.search.ui.Keyboard
+import com.apoplawski.codesamples.articles.search.presentation.NewSearchViewModel
 import com.apoplawski.codesamples.ui.theme.color_blue
 import com.apoplawski.codesamples.ui.theme.color_cyan
 import com.apoplawski.codesamples.ui.theme.color_silver
@@ -169,39 +168,3 @@ private fun searchFieldColorsStateActive() = TextFieldDefaults.textFieldColors(
     focusedLabelColor = Color.Transparent,
     unfocusedLabelColor = Color.Transparent,
 )
-
-@Composable
-fun MyText(
-    text: String,
-    style: TextStyle,
-    modifier: Modifier = Modifier,
-    maxLines: Int = Int.MAX_VALUE,
-    overflow: TextOverflow = TextOverflow.Ellipsis,
-    textAlign: TextAlign = TextAlign.Start,
-) {
-    Text(
-        modifier = modifier,
-        text = text,
-        maxLines = maxLines,
-        overflow = overflow,
-        style = style,
-        textAlign = textAlign,
-    )
-}
-
-@Composable
-fun MyIcon(
-    @DrawableRes resource: Int,
-    tint: Color,
-    modifier: Modifier = Modifier,
-    contentDescription: String = "",
-) {
-    Icon(
-        painter = painterResource(id = resource),
-        contentDescription = contentDescription,
-        tint = tint,
-        modifier = modifier then Modifier.semantics {
-            this.contentDescription = contentDescription
-        },
-    )
-}

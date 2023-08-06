@@ -1,4 +1,4 @@
-package com.apoplawski.codesamples.screens.search.ui
+package com.apoplawski.codesamples.articles.search.presentation.components
 
 import android.graphics.Rect
 import android.view.ViewTreeObserver

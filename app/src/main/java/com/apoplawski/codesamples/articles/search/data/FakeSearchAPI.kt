@@ -1,4 +1,4 @@
-package com.apoplawski.codesamples.screens.search.data
+package com.apoplawski.codesamples.articles.search.data
 
 import kotlinx.coroutines.delay
 import java.io.IOException
@@ -12,7 +12,7 @@ data class SearchResultSchema(
 class FakeSearchAPI {
 
     suspend fun getResults(searchTerm: String): List<SearchResultSchema> {
-        delay(700)
+        delay(500)
         return when {
             searchTerm.length > 10 -> emptyList()
             searchTerm == "error" -> throw IOException()
@@ -28,14 +28,3 @@ class FakeSearchAPI {
         )
     }
 }
-
-//val results = mutableListOf<SearchResultSchema>()
-//for (i in 0 until 20) {
-//    results.add(
-//        SearchResultSchema(
-//            id = i,
-//            title = "Title of result $i",
-//            subtitle = "Subtitle of result $i"
-//        )
-//    )
-//}

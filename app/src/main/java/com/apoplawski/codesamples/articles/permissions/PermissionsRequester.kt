@@ -1,4 +1,4 @@
-package com.apoplawski.codesamples.permissions
+package com.apoplawski.codesamples.articles.permissions
 
 import android.Manifest
 import android.os.Build

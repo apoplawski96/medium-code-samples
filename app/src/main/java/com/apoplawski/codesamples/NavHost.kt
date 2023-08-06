@@ -11,11 +11,11 @@ import androidx.navigation.compose.composable
 import com.apoplawski.codesamples.navigation.Navigator
 import com.apoplawski.codesamples.navigation.model.Destinations
 import com.apoplawski.codesamples.navigation.model.NavigationCommand
-import com.apoplawski.codesamples.screens.search.SearchScreen
+import com.apoplawski.codesamples.articles.search.presentation.SearchScreen
 import org.koin.androidx.compose.get
 
 @Composable
-fun CodeSamplesNavHost(navigator: Navigator = get()) {
+fun NavHost(navigator: Navigator = get()) {
 
     val navController = rememberNavController()
 

@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.apoplawski.codesamples.permissions.PermissionRequester
+import com.apoplawski.codesamples.articles.permissions.PermissionRequester
 import com.apoplawski.codesamples.ui.theme.CodeSamplesTheme
 import org.koin.android.ext.android.inject
 
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CodeSamplesTheme {
-                CodeSamplesNavHost()
+                NavHost()
             }
         }
     }

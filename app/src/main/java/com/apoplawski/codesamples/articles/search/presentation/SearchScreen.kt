@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeUiApi::class)
 
-package com.apoplawski.codesamples.screens.search
+package com.apoplawski.codesamples.articles.search.presentation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -31,10 +31,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.apoplawski.codesamples.R
-import com.apoplawski.codesamples.screens.search.components.SearchInputField
-import com.apoplawski.codesamples.screens.search.model.SearchResult
-import com.apoplawski.codesamples.screens.search.ui.Keyboard
-import com.apoplawski.codesamples.screens.search.ui.keyboardAsState
+import com.apoplawski.codesamples.articles.search.presentation.components.SearchInputField
+import com.apoplawski.codesamples.articles.search.domain.model.SearchResult
+import com.apoplawski.codesamples.articles.search.presentation.components.Keyboard
+import com.apoplawski.codesamples.articles.search.presentation.components.keyboardAsState
 import com.apoplawski.codesamples.ui.theme.color_dark_blue
 import com.apoplawski.codesamples.ui.theme.color_silver
 import com.apoplawski.codesamples.ui.theme.color_soft_white

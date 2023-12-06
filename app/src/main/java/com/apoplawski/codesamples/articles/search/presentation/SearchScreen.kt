@@ -42,7 +42,7 @@ import com.apoplawski.codesamples.ui.theme.fonts
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun SearchScreen(viewModel: NewSearchViewModel = getViewModel()) {
+fun SearchScreen(viewModel: SearchViewModel = getViewModel()) {
 
     val viewState = viewModel.viewState.collectAsState().value
     val searchFieldState = viewModel.searchFieldState.collectAsState().value
@@ -76,8 +76,8 @@ fun SearchScreen(viewModel: NewSearchViewModel = getViewModel()) {
 
 @Composable
 private fun SearchScreenLayout(
-    viewState: NewSearchViewModel.ViewState,
-    searchFieldState: NewSearchViewModel.SearchFieldState,
+    viewState: SearchViewModel.ViewState,
+    searchFieldState: SearchViewModel.SearchFieldState,
     inputText: String,
     onSearchInputChanged: (String) -> Unit,
     onSearchInputClicked: () -> Unit,
@@ -110,7 +110,7 @@ private fun SearchScreenLayout(
                 .background(color_silver.copy(alpha = 0.2f))
         )
         when (viewState) {
-            NewSearchViewModel.ViewState.IdleScreen -> {
+            SearchViewModel.ViewState.IdleScreen -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Image(
                         painter = painterResource(id = R.drawable.undraw_search),
@@ -120,25 +120,25 @@ private fun SearchScreenLayout(
                 }
             }
 
-            NewSearchViewModel.ViewState.Error -> {
+            SearchViewModel.ViewState.Error -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Error :(", color = color_soft_white)
                 }
             }
 
-            NewSearchViewModel.ViewState.Loading -> {
+            SearchViewModel.ViewState.Loading -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator()
                 }
             }
 
-            NewSearchViewModel.ViewState.NoResults -> {
+            SearchViewModel.ViewState.NoResults -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "No results for this input :(", color = color_soft_white)
                 }
             }
 
-            is NewSearchViewModel.ViewState.SearchResultsFetched -> {
+            is SearchViewModel.ViewState.SearchResultsFetched -> {
                 SearchResultsList(items = viewState.results, onItemClicked = onItemClicked)
             }
         }
@@ -147,9 +147,9 @@ private fun SearchScreenLayout(
 
 @Composable
 private fun SearchHeader(
-    searchFieldState: NewSearchViewModel.SearchFieldState
+    searchFieldState: SearchViewModel.SearchFieldState
 ) {
-    AnimatedVisibility(visible = searchFieldState == NewSearchViewModel.SearchFieldState.Idle) {
+    AnimatedVisibility(visible = searchFieldState == SearchViewModel.SearchFieldState.Idle) {
         Text(
             text = "Search",
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp, top = 16.dp),

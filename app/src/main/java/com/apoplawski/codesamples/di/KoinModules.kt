@@ -5,7 +5,7 @@ import android.content.Context
 import com.apoplawski.codesamples.navigation.KTINavigator
 import com.apoplawski.codesamples.navigation.Navigator
 import com.apoplawski.codesamples.articles.permissions.PermissionRequester
-import com.apoplawski.codesamples.articles.search.presentation.NewSearchViewModel
+import com.apoplawski.codesamples.articles.search.presentation.SearchViewModel
 import com.apoplawski.codesamples.articles.search.data.FakeSearchAPI
 import com.apoplawski.codesamples.articles.search.domain.GetSearchResults
 import kotlinx.coroutines.CoroutineScope
@@ -25,7 +25,7 @@ fun appModule(application: Application) = module {
 }
 
 val searchModule = module {
-    viewModelOf(::NewSearchViewModel)
+    viewModelOf(::SearchViewModel)
     singleOf(::FakeSearchAPI)
     singleOf(::GetSearchResults)
 }

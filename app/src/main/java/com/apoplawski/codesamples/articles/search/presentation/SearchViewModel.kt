@@ -11,8 +11,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 
-class NewSearchViewModel(private val getSearchResults: GetSearchResults) : ViewModel() {
+class SearchViewModel(private val getSearchResults: GetSearchResults) : ViewModel() {
 
     sealed interface ViewState {
         object IdleScreen : ViewState
@@ -40,25 +41,29 @@ class NewSearchViewModel(private val getSearchResults: GetSearchResults) : ViewM
         MutableStateFlow("")
     val inputText: StateFlow<String> = _inputText
 
+    private val isInitialized = AtomicBoolean(false)
+
     @FlowPreview
     fun initialize() {
-        viewModelScope.launch {
-            inputText.debounce(500).collectLatest { input ->
-                if (input.blankOrEmpty()) {
-                    _viewState.update { ViewState.IdleScreen }
-                    return@collectLatest
-                }
-
-                when (val result = getSearchResults(input)) {
-                    is GetSearchResults.Result.Success -> {
-                        if (result.results.isEmpty()) {
-                            _viewState.update { ViewState.NoResults }
-                        } else {
-                            _viewState.update { ViewState.SearchResultsFetched(result.results) }
-                        }
+        if (isInitialized.compareAndSet(false, true)) {
+            viewModelScope.launch {
+                inputText.debounce(500).collectLatest { input ->
+                    if (input.blankOrEmpty()) {
+                        _viewState.update { ViewState.IdleScreen }
+                        return@collectLatest
                     }
-                    is GetSearchResults.Result.Error -> {
-                        _viewState.update { ViewState.Error }
+
+                    when (val result = getSearchResults(input)) {
+                        is GetSearchResults.Result.Success -> {
+                            if (result.results.isEmpty()) {
+                                _viewState.update { ViewState.NoResults }
+                            } else {
+                                _viewState.update { ViewState.SearchResultsFetched(result.results) }
+                            }
+                        }
+                        is GetSearchResults.Result.Error -> {
+                            _viewState.update { ViewState.Error }
+                        }
                     }
                 }
             }

@@ -1,6 +1,5 @@
 package com.apoplawski.codesamples.articles.search.presentation.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -11,8 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
@@ -21,17 +18,12 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.*
 import com.apoplawski.codesamples.R
-import com.apoplawski.codesamples.articles.search.presentation.NewSearchViewModel
+import com.apoplawski.codesamples.articles.search.presentation.SearchViewModel
 import com.apoplawski.codesamples.ui.theme.color_blue
 import com.apoplawski.codesamples.ui.theme.color_cyan
 import com.apoplawski.codesamples.ui.theme.color_silver
@@ -41,7 +33,7 @@ import com.apoplawski.codesamples.ui.theme.fonts
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchInputField(
-    searchFieldState: NewSearchViewModel.SearchFieldState,
+    searchFieldState: SearchViewModel.SearchFieldState,
     inputText: String,
     onSearchInputChanged: (String) -> Unit,
     onClearInputClicked: () -> Unit,
@@ -55,7 +47,7 @@ fun SearchInputField(
 
     val isKeyboardOpen = keyboardState == Keyboard.Opened
 
-    if (searchFieldState is NewSearchViewModel.SearchFieldState.WithInputActive && isKeyboardOpen) {
+    if (searchFieldState is SearchViewModel.SearchFieldState.WithInputActive && isKeyboardOpen) {
         onKeyboardHidden()
     }
 
@@ -70,14 +62,14 @@ fun SearchInputField(
         onValueChange = { newInput -> onSearchInputChanged(newInput) },
         leadingIcon = {
             when (searchFieldState) {
-                NewSearchViewModel.SearchFieldState.Idle -> MyIcon(
+                SearchViewModel.SearchFieldState.Idle -> MyIcon(
                     resource = R.drawable.navbar_icons_search_inactive,
                     tint = color_blue.copy(alpha = 0.6f),
                     contentDescription = "Search icon",
                 )
 
-                NewSearchViewModel.SearchFieldState.EmptyActive,
-                NewSearchViewModel.SearchFieldState.WithInputActive -> MyIcon(
+                SearchViewModel.SearchFieldState.EmptyActive,
+                SearchViewModel.SearchFieldState.WithInputActive -> MyIcon(
                     resource = R.drawable.ic_chevron_left,
                     tint = color_silver.copy(alpha = 0.6f),
                     modifier = Modifier.clickable { onChevronClicked.invoke() },
@@ -86,11 +78,11 @@ fun SearchInputField(
             }
         },
         colors = when (searchFieldState) {
-            NewSearchViewModel.SearchFieldState.Idle -> searchFieldColorsStateIdle()
-            NewSearchViewModel.SearchFieldState.EmptyActive,
-            NewSearchViewModel.SearchFieldState.WithInputActive -> searchFieldColorsStateActive()
+            SearchViewModel.SearchFieldState.Idle -> searchFieldColorsStateIdle()
+            SearchViewModel.SearchFieldState.EmptyActive,
+            SearchViewModel.SearchFieldState.WithInputActive -> searchFieldColorsStateActive()
         },
-        trailingIcon = if (searchFieldState is NewSearchViewModel.SearchFieldState.WithInputActive) {
+        trailingIcon = if (searchFieldState is SearchViewModel.SearchFieldState.WithInputActive) {
             {
                 MyIcon(
                     resource = R.drawable.ic_close_search,
@@ -112,9 +104,9 @@ fun SearchInputField(
                     letterSpacing = TextUnit(-0.01f, TextUnitType.Sp),
                     fontFamily = fonts,
                     color = when (searchFieldState) {
-                        NewSearchViewModel.SearchFieldState.EmptyActive -> color_silver.copy(alpha = 0.6f)
-                        NewSearchViewModel.SearchFieldState.Idle -> color_blue.copy(alpha = 0.6f)
-                        is NewSearchViewModel.SearchFieldState.WithInputActive -> color_silver.copy(
+                        SearchViewModel.SearchFieldState.EmptyActive -> color_silver.copy(alpha = 0.6f)
+                        SearchViewModel.SearchFieldState.Idle -> color_blue.copy(alpha = 0.6f)
+                        is SearchViewModel.SearchFieldState.WithInputActive -> color_silver.copy(
                             alpha = 0.6f
                         )
                     },
